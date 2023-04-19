@@ -7,14 +7,14 @@ import org.openqa.selenium.WebElement;
 
 public class ProductPage {
 
-    private  static String productSearchInput = "input[id='search_product']";
-    private  static String productSearchButton = "input[id='submit_search']";
+    private  static String productSearchInput = "search_product";
+    private  static String productSearchButton = "submit_search";
 
     public static void searchProduct(WebDriver driver, String productName) {
-        WebElement element = driver.findElement(new By.ByCssSelector(productSearchInput));
+        WebElement element = driver.findElement(new By.ById(productSearchInput));
         element.sendKeys(productName);
 
-        WebElement buttonSearch = driver.findElement(new By.ByCssSelector(productSearchButton));
+        WebElement buttonSearch = driver.findElement(new By.ById(productSearchButton));
         buttonSearch.sendKeys(Keys.RETURN);
     }
 }

@@ -32,35 +32,28 @@ public class DayThree {
         // Step 3
         String expectedTitle = "Automation Exercise";
         // fetch the title of the web page and save it into a string variable
-        boolean result = ExpectedConditions.titleIs(expectedTitle).apply(driver);
-        Assert.assertTrue(result);
+        Assert.assertEquals(driver.getTitle(),expectedTitle);
         HomePage.navigateToTestCasePage(driver);
-        WebDriverWait wait = new WebDriverWait(driver,5);
-        wait.until(ExpectedConditions.titleIs("Automation Practice Website for UI Testing - Test Cases"));
         String testCaseHeadingTitleSelector = "h2[class='title text-center']";
         WebElement element = driver.findElement(new By.ByCssSelector(testCaseHeadingTitleSelector));
         Assert.assertEquals(element.getText(), "TEST CASES");
     }
 
     @Test
-    void pageProductDisplaySuccessful() {
+    void pageProductDisplaySuccessful() throws InterruptedException {
         // Step 1 + 2
         driver.get("https://automationexercise.com");
         // Step 3
         String expectedTitle = "Automation Exercise";
         // fetch the title of the web page and save it into a string variable
-        boolean result = ExpectedConditions.titleIs(expectedTitle).apply(driver);
-        Assert.assertTrue(result);
-        HomePage.navigateToTestCasePage(driver);
-        WebDriverWait wait = new WebDriverWait(driver,5);
-        wait.until(ExpectedConditions.titleIs("Automation Exercise - All Products"));
-        String testCaseHeadingTitleSelector = "h2[class='title text-center']";
-        WebElement element = driver.findElement(new By.ByCssSelector(testCaseHeadingTitleSelector));
-        Assert.assertEquals(element.getText(), "CATEGORY");
+        Assert.assertEquals(driver.getTitle(), expectedTitle);
+        HomePage.navigateToProductPage(driver);
+
+        Assert.assertEquals(driver.getTitle(), "Automation Exercise - All Products");
         ProductPage.searchProduct(driver, "polo");
         String productResultTitle = "/html/body/section[2]/div/div/div[2]/div/h2";
         WebElement productResultTitleElement = driver.findElement(new By.ByXPath(productResultTitle));
-        Assert.assertEquals(productResultTitleElement.getText(),"Searched Products");
+        Assert.assertEquals(productResultTitleElement.getText(),"SEARCHED PRODUCTS");
     }
 
     @AfterClass
