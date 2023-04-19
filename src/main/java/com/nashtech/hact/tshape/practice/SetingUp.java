@@ -11,7 +11,8 @@ public class SetingUp {
      */
     public static WebDriver setUp (){
         System.out.print("Setting Up!");
-        System.setProperty("webdriver.chrome.driver","/Users/hact/Downloads/chromedriver_mac64/chromedriver");
+//        System.setProperty("webdriver.chrome.driver","/Users/hact/Downloads/chromedriver_mac64/chromedriver");
+        System.setProperty("webdriver.chrome.driver","D:\\Setups\\chromedriver_win32\\chromedriver.exe");
         return new ChromeDriver();
     }
 }
